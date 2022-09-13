@@ -1,23 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { useDispatch, useSelector } from "react-redux";
+import Game from "./Components/Game";
 
 function App() {
+  const setValue = useSelector((state) => state.setValue);
+  const boardData = useSelector((state) => state.boardData);
+  const dispatch = useDispatch();
+  
+  const handleEvent = () => {
+    console.log(setValue);
+    dispatch({
+      type: "SET_VALUE",
+      setValue: !setValue,
+    });
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <div>
+        <button onClick={handleEvent}>counter</button>
+      </div>
+      <Game />
     </div>
   );
 }
